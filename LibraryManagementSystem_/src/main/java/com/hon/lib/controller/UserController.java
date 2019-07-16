@@ -23,20 +23,20 @@ import org.springframework.web.bind.annotation.RestController;
 public class UserController
 {
   @Autowired
-  private IUserService userService;
+  private IUserService Service;
 
   @ApiOperation(value="view all available users")
   @GetMapping(value = "/getAllUsers")
   public List<User> getAllUsers()
   {
-    return userService.getAllUsers();
+    return Service.getAllUsers();
   }
 
   @ApiOperation(value="view specific user ")
   @GetMapping(value = "/getUserById/{userId}")
-  public User getTopicById(@PathVariable Integer userId)
+  public User getUserById(@PathVariable Integer userId)
   {
-    return userService.getUserById(userId);
+    return Service.getUserById(userId);
   }
 
   @ApiOperation(value="Check if specified user available")
@@ -45,11 +45,11 @@ public class UserController
   {
     if (userId == null)
     {
-      return userService.getUserById(1);
+      return Service.getUserById(1);
     }
     else
     {
-      return userService.getUserById(userId);
+      return Service.getUserById(userId);
     }
   }
 
@@ -57,26 +57,26 @@ public class UserController
   @PostMapping(value = "/addUser")
   public void addUser(@RequestBody User user){
 
-    userService.addUser(user);
+    Service.addUser(user);
   }
 
   @ApiOperation(value="create multiple users")
   @PostMapping(value = "/addUsers")
   public void createUsers(@RequestBody List<User> users)
   {
-    userService.addUsers(users);
+    Service.addUsers(users);
   }
 
   @ApiOperation(value="update user")
   @PutMapping(value = "/updateUser")
   public void updateUser(@RequestBody User user){
-    userService.updateUser(user);
+    Service.updateUser(user);
   }
 
   @ApiOperation(value="delete user")
   @DeleteMapping(value = "/deleteUser/{userId}")
   public void deleteUser(@PathVariable Integer userId){
-    userService.deleteUser(userId);
+    Service.deleteUser(userId);
   }
 
 }

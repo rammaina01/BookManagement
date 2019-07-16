@@ -23,8 +23,8 @@ public class UserService implements IUserService
     //GET USER BY ID
     public User getUserById(Integer userId)
     {
-        User obj = repository.findById(userId).get();
-        return obj;
+        User user = repository.findById(userId).get();
+        return user;
     }
 
     //ADD USERS
