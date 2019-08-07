@@ -11,45 +11,51 @@ import org.springframework.stereotype.Service;
 @Service
 public class UserService implements IUserService
 {
-    @Autowired
-    private IUsersRepository repository;
+  @Autowired
+  private IUsersRepository repository;
 
-    //GET USERS
-    public List<User> getAllUsers()
+  //GET USERS
+  public List<User> getAllUsers()
+  {
+    return (List<User>) repository.findAll();
+  }
+
+  //GET USER BY ID
+  public User getUserById(Integer userId)
+  {
+    User user = repository.findById(userId).get();
+    return user;
+  }
+
+  //ADD USERS
+  public void addUsers(List<User> users)
+  {
+    repository.saveAll(users);
+  }
+
+  //ADD USER
+  public void addUser(User user)
+  {
+    if (user == null)
     {
-        return (List<User>) repository.findAll();
-    }
 
-    //GET USER BY ID
-    public User getUserById(Integer userId)
-    {
-        User user = repository.findById(userId).get();
-        return user;
     }
+    repository.save(user);
 
-    //ADD USERS
-    public void addUsers(List<User> users)
-    {
-        repository.saveAll(users);
-    }
+  }
 
-    //ADD USER
-    public void addUser(User user)
-    {
-        repository.save(user);
-    }
+  //UPDATE
+  public void updateUser(User user)
+  {
+    repository.save(user);
+  }
 
-    //UPDATE
-    public void updateUser(User user)
-    {
-        repository.save(user);
-    }
+  //DELETE
+  public void deleteUser(Integer userId)
+  {
 
-    //DELETE
-    public void deleteUser(Integer userId)
-    {
-        repository.delete(getUserById(userId));
-    }
+    repository.delete(getUserById(userId));
 
+  }
 
 }

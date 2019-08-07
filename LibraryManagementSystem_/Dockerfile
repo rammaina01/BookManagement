@@ -6,6 +6,6 @@ LABEL pipelineName="javawebapi" \
       pipelineKey="pipelinekey" \
       offeringKey="offeringkey"
 COPY --from=0 /etc/passwd /etc/passwd
-COPY target/LibraryManagementSystem_*.jar app.jar
+COPY build/libs/LibraryManagementSystem*.jar app.jar
 USER appuser
 CMD ["/app.jar"]
